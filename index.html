@@ -14,13 +14,18 @@ html, body {
 }
 
 .area {
-  stroke: #fff;
+  stroke: #0ff;
   stroke-opacity: 1;
   fill: rgba(0,0,0,0);
 }
 
 .line {
   stroke: #fff;
+  stroke-linejoin: round;
+}
+
+.bike {
+  stroke: #f0f;
   stroke-linejoin: round;
 }
 
@@ -65,6 +70,11 @@ d3.json("MERGED_MTL.topojson", function(error, mtl) {
   svg.append("path")
       .datum(topojson.feature(mtl, mtl.objects.GEOBASE_MTL, function(a, b) { return a !== b; }))
       .attr("class", "line")
+      .attr("d", path);
+
+  svg.append("path")
+      .datum(topojson.feature(mtl, mtl.objects.BIKEPATH_MTL, function(a, b) { return a !== b; }))
+      .attr("class", "bike")
       .attr("d", path);
 
   svg.append("path")
